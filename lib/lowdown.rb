@@ -1,5 +1,12 @@
+require 'lowdown/os'
 require 'lowdown/version'
 
-module Lowdown
-  # Your code goes here...
+class Lowdown
+  # Detected operating system details.
+  attr_reader :os
+
+  def initialize
+    @os ||= Lowdown::OS.new
+  end
 end
+
