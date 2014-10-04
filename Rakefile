@@ -7,8 +7,7 @@ RSpec::Core::RakeTask.new(:spec)
 
 desc 'Validate against rubocop'
 RuboCop::RakeTask.new(:rubocop) do |task|
-    task.fail_on_error = true
+  task.fail_on_error = true
 end
 
 task default: [:spec, :rubocop]
-

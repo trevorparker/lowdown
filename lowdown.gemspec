@@ -4,17 +4,17 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'lowdown/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'lowdown'
-  spec.version       = Lowdown::Version::STRING
-  spec.authors       = ['Trevor Parker']
-  spec.email         = ['trevor@trevorparker.com']
-  spec.summary       = 'A system intelligence library with graceful degradation.'
-  spec.homepage      = 'https://github.com/trevorparker/lowdown'
-  spec.license       = 'Modified BSD'
+  spec.name     = 'lowdown'
+  spec.version  = Lowdown::Version::STRING
+  spec.authors  = ['Trevor Parker']
+  spec.email    = ['trevor@trevorparker.com']
+  spec.summary  = 'A system intelligence library with graceful degradation.'
+  spec.homepage = 'https://github.com/trevorparker/lowdown'
+  spec.license  = 'Modified BSD'
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.executables   = spec.files.grep(/^bin\//) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(/^(test|spec|features)\//)
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.7'
