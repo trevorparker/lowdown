@@ -1,5 +1,13 @@
 class Lowdown
+  # Operating system details.
   class OS
+    KNOWN_OS = {
+      /bsd/ => :bsd,
+      /darwin/ => :os_x,
+      /linux/ => :linux,
+      /mswin|mingw/ => :windows
+    }
+
     # Returns the OS name detected.
     attr_reader :name
 
@@ -13,22 +21,10 @@ class Lowdown
     private
 
     def detect_name
-      case RbConfig::CONFIG['host_os']
-      when /bsd/
-        detect_bsd_flavor
-      when /darwin/
-        'OS X'
-      when /linux/
-        'Linux'
-      when /solaris/
-        'Solaris'
-      when /mswin|mingw/
-        'Windows'
+      host_os = RbConfig::CONFIG['host_os']
+      KNOWN_OS.each do |match, os|
+        return os if match =~ host_os
       end
-    end
-
-    def detect_bsd_flavor
-      `uname`.strip!
     end
   end
 end
