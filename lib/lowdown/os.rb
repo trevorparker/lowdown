@@ -5,17 +5,16 @@ class Lowdown
       /bsd/ => :bsd,
       /darwin/ => :os_x,
       /linux/ => :linux,
+      /solaris/ => :solaris,
       /mswin|mingw/ => :windows
     }
 
-    # Returns the OS name detected.
-    attr_reader :name
+    def name
+      @name ||= detect_name
+    end
 
-    # Returns the OS version detected.
-    attr_reader :version
-
-    def initialize
-      @name = detect_name
+    def version
+      @version ||= detect_version
     end
 
     private
@@ -25,6 +24,10 @@ class Lowdown
       KNOWN_OS.each do |match, os|
         return os if match =~ host_os
       end
+    end
+
+    def detect_version
+      return `sw_vers -productVersion`.strip if name == :os_x
     end
   end
 end
